@@ -1,0 +1,37 @@
+rule "ehcontrolUpdate"
+when
+  System started or
+  Time cron "0 0/5 * * * ? *"  // periodically reload to get updates to the items
+then
+  val xml = sendHttpGetRequest("http://192.168.20.124/state")        
+  val t1 = transform("XPATH", "//ctrl/state/sensor[1]/t", xml)    //Burner        
+  val t2 = transform("XPATH", "//ctrl/state/sensor[2]/t", xml)    //Zone1
+  val t3 = transform("XPATH", "//ctrl/state/sensor[3]/t", xml)    //Zone2
+  val t4 = transform("XPATH", "//ctrl/state/sensor[4]/t", xml)    //Return floor
+  val t5 = transform("XPATH", "//ctrl/state/sensor[5]/t", xml)    //Return
+  val t6 = transform("XPATH", "//ctrl/state/sensor[6]/t", xml)    //Return Zone1
+  val t7 = transform("XPATH", "//ctrl/state/sensor[7]/t", xml)    //Return Zone2
+  vilBurner.postUpdate(t1)
+  vilZone1.postUpdate(t2)
+  vilZone2.postUpdate(t3)
+  vilFloor.postUpdate(t4)
+  vilReturn.postUpdate(t5)
+  vilReturnZ1.postUpdate(t6)
+  vilReturnZ2.postUpdate(t7)
+  val r1 = transform("XPATH", "//ctrl/state/relay[1]/r", xml)     //Burner
+  val r2 = transform("XPATH", "//ctrl/state/relay[2]/r", xml)     //Zone1
+  val r3 = transform("XPATH", "//ctrl/state/relay[3]/r", xml)     //Zone2
+  val r4 = transform("XPATH", "//ctrl/state/relay[4]/r", xml)     //Floor
+  val eco = transform("XPATH", "//ctrl/env/eco", xml)             //EcoMode
+  val r2t2On = transform("XPATH", "//ctrl/state/relay[2]/rnowt", xml)     //Zone1
+  vilZone1T2.postUpdate(transform("MAP", "openclose.map", r2t2On))
+  val r2td = transform("XPATH", "//ctrl/state/relay[2]/td", xml)  //Zone1
+  val r3td = transform("XPATH", "//ctrl/state/relay[3]/td", xml)  //Zone1
+  vilBurnerOn.postUpdate(transform("MAP", "openclose.map", r1))
+  vilZone1On.postUpdate(transform("MAP", "openclose.map", r2))
+  vilZone1Target.postUpdate(r2td)
+  vilZone2Target.postUpdate(r2td)
+  vilZone2On.postUpdate(transform("MAP", "openclose.map", r3))
+  vilFloorOn.postUpdate(transform("MAP", "openclose.map", r4))
+  vilEco.postUpdate(transform("MAP", "onoff.map", eco)) 
+end
