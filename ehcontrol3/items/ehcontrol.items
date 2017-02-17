@@ -1,0 +1,19 @@
+Number homeOutside "Outside temperature [%.2f°C]" (HOME)
+Number vilBurner "Burner [%.2f°C]" (VILLAGE, Heating)
+Group vilThermostatZone1 "Thermostat Zone1" [ "Thermostat" ]
+Number vilZone1 "Zone1 [%.2f°C]" (VILLAGE, Heating, vilThermostatZone1) ["CurrentTemperature"]
+Number vilZone1Target "Zone1 Target [%.2f°C]" (VILLAGE, Heating, vilThermostatZone1) ["TargetTemperature"]
+Contact vilZone1T2 "Zone1 T2 [MAP(daynight.map):%s]" (VILLAGE, Heating)
+Group vilThermostatZone2 "Thermostat Zone2" [ "Thermostat" ]
+Number vilZone2 "Zone2 [%.2f°C]" (VILLAGE, Heating, vilThermostatZone2)
+Number vilZone2Target "Zone2 Target [%.2f°C]" (VILLAGE, Heating, vilThermostatZone2) ["TargetTemperature"]
+Contact vilZone2T2 "Zone2 T2 [MAP(daynight.map):%s]" (VILLAGE, Heating)
+Number vilFloor "Floor Return [%.2f°C]" (VILLAGE, Heating)
+Number vilReturn "Burner Return [%.2f°C]" (VILLAGE, Heating)
+Number vilReturnZ1 "Zone1 Return [%.2f°C]" (VILLAGE, Heating)
+Number vilReturnZ2 "Zone2 Return [%.2f°C]" (VILLAGE, Heating)
+Contact vilBurnerOn "Burner [%s]" (VILLAGE, Heating)
+Contact vilZone1On "Zone1 Heating [%s]" (VILLAGE, Heating)
+Contact vilZone2On "Zone2 Heating [%s]" (VILLAGE, Heating)
+Contact vilFloorOn "Floor Heating [%s]" (VILLAGE, Heating)
+Switch vilEco "Eco mode [MAP(eco.map):%s]" (VILLAGE, Heating)
