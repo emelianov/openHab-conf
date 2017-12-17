@@ -1,1 +1,1 @@
-CCU-825
+[CCU-825](http://radsel.ru)
