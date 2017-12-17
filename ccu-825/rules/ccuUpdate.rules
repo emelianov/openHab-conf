@@ -1,0 +1,102 @@
+// openHab CCU825 state data import
+// (c)2017, a.m.emelanov@gmail.com
+// http://733666.ru
+rule "ccuUpdate"
+ when
+    Item ccuCache changed
+//  or Time cron "0 * * * * ? *"  // Update every minut. Just for debug.
+ then
+//  logInfo("ccu", "Relay1: [{}].", relay1)
+  var String json 	= "" + ccuCache.state		//Put CCU JSON state to local variable
+  try {
+  // Realy1 - ON/OFF
+    val relay1		= transform("JSONPATH", "$.Outputs[0]", json)
+    ccuRelay1.postUpdate(transform("MAP", "onoff.map", relay1))
+  }
+  try {
+  // Realy2 - ON/OFF
+    val relay2 		= transform("JSONPATH", "$.Outputs[1]", json)
+    ccuRelay2.postUpdate(transform("MAP", "onoff.map", relay2))
+  }
+  try {
+  // Output1 - ON/OFF
+    val output1		= transform("JSONPATH", "$.Outputs[2]", json)
+    ccuOutput1.postUpdate(transform("MAP", "onoff.map", output1))
+  }
+  try {
+  // Output2 - ON/OFF
+    val output2		= transform("JSONPATH", "$.Outputs[3]", json)
+    ccuOutput2.postUpdate(transform("MAP", "onoff.map", output2))
+  }
+  try {
+  // Output3 - ON/OFF
+    val output3		= transform("JSONPATH", "$.Outputs[4]", json)
+    ccuOutput3.postUpdate(transform("MAP", "onoff.map", output3))
+  }
+  try {
+  // Output4 - ON/OFF
+    val output4		= transform("JSONPATH", "$.Outputs[5]", json)
+    ccuOutput4.postUpdate(transform("MAP", "onoff.map", output4))
+  }
+  try {
+  // Output5 - ON/OFF
+    val output5		= transform("JSONPATH", "$.Outputs[6]", json)
+    ccuOutput5.postUpdate(transform("MAP", "onoff.map", output5))
+  }
+  try {
+  // Input1 - Value
+  // Input1Active - OPEN/CLOSED
+    val input1		= transform("JSONPATH", "$.Inputs[0].Voltage", json)
+    ccuInput1.postUpdate(input1)
+    val input1Active	= transform("JSONPATH", "$.Inputs[0].Active", json)
+    ccuInput1Active.postUpdate(transform("MAP", "openclose.map", input1Active))
+  }
+  try {
+    val input14		= new DecimalType(transform("JSONPATH", "$.Inputs[13].Voltage", json))
+  //ccuInput14.postUpdate(input14*10/4095)		// For Voltage value
+    ccuInput14.postUpdate(input14*10/4095/0.03-50)	// For RTD-02 temperature value
+    val input14Active	= transform("JSONPATH", "$.Inputs[13].Active", json)
+    ccuInput14Active.postUpdate(transform("MAP", "openclose.map", input14Active))
+  }
+  try {
+    val internalTemp	= transform("JSONPATH", "$.Temp", json)
+    ccuInternalTemperature.postUpdate(internalTemp)
+  }
+  try {
+    val batteryCharge	= transform("JSONPATH", "$.Battery.Charge", json)
+    ccuBatteryCharge.postUpdate(batteryCharge)
+  }
+  try {
+    val batteryState	= transform("JSONPATH", "$.Battery.State", json)
+    ccuBatteryState.postUpdate(batteryState)
+  }
+  try {
+    val power		= transform("JSONPATH", "$.Power", json)
+    ccuPower.postUpdate(power)
+  }
+  try {
+    val caseState	= transform("JSONPATH", "$.Case", json)
+    ccuCase.postUpdate(transform("MAP", "opencloseinv.map", caseState))
+  }
+  try {
+    val balance	= transform("JSONPATH", "$.Balance", json)
+    ccuBalance.postUpdate(balance))
+  }
+  try {
+    val part1	= transform("JSONPATH", "$.Partitions[0]", json)
+    ccuPartition1.postUpdate(transform("MAP", "ccuarm.map", part1))
+  }
+  try {
+    val part2	= transform("JSONPATH", "$.Partitions[1]", json)
+    ccuPartition2.postUpdate(transform("MAP", "ccuarm.map", part2))
+  }
+  try {
+    val part3	= transform("JSONPATH", "$.Partitions[2]", json)
+    ccuPartition3.postUpdate(transform("MAP", "ccuarm.map", part3))
+  }
+  try {
+    val part4	= transform("JSONPATH", "$.Partitions[3]", json)
+    ccuPartition4.postUpdate(transform("MAP", "ccuarm.map", part4))
+  }
+ end
+

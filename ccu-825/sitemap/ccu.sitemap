@@ -1,0 +1,26 @@
+sitemap ccu label="CCU" {
+    Frame label="CCU" {
+	    Switch item=ccuPartition1		label="Охрана" icon="lock"
+	    Text   item=ccuPartition2		label="Звонок" icon="soundvolume"
+	    Switch item=ccuOutput4		label="Освещение в доме" icon="light"
+	    Switch item=ccuOutput3		label="Хозпостройки" icon="light"
+	    Switch item=ccuOutput5		label="Гирлянда" icon="light"
+	    Text   item=ccuInput14		label="Температура CCU" icon="temperature"
+	    Text   item=ccuInput14Active	label="Мониторинг Температуры" icon="temperature" visibility=[ccuInput14Active==OPEN]
+	    Text   item=ccuInput14Active	label="Мониторинг Температуры" icon="error" visibility=[ccuInput14Active==CLOSED]
+	    Text   item=ccuInput1Active		label="Движение" icon="motion" valuecolor=[ccuInput1Active==CLOSED="red"]
+	    Text   item=ccuBatteryCharge	label="Заряд батареи" icon="battery"
+	    Text   item=ccuBatteryState		label="Состояние батареи" icon="battery" visibility=[ccuBatteryState=="OK"]
+	    Text   item=ccuBatteryState		label="Состояние батареи" icon="error" visibility=[ccuBatteryState!="OK"]
+	    Text   item=ccuPower		label="Напряжение питания" icon="energy"
+	}
+    Frame label="Дом" {
+    	Text item=upsInternalTemperature label="Температура ИБП" valuecolor=[>25="orange",>15="green",<=15="blue"] icon="temperature"
+        Text item=tvPower label="TV" icon="television" {
+            Switch item=tvPower
+	    Switch item=tvMute icon="soundvolume_mute"
+            Slider item=tvVolume icon="soundvolume"
+        }
+    }
+}
+

@@ -1,0 +1,132 @@
+sitemap demo label="DEVEL" {
+    Frame label="General" {
+        Text item=homeOutside icon="temperature_cold" visibility=[homeOutside<=10]
+        Text item=homeOutside icon="temperature_hot" visibility=[homeOutside>10]
+    }
+    Frame label="Village" {
+	Switch item=vilEco label="Eco mode" icon="present" visibility=[vilEco==ON]
+	Switch item=vilEco label="Eco mode" icon="house" visibility=[vilEco==OFF]
+	Text item=vilFloorOn label="Floor" icon="cellar" valuecolor=[vilFloorOn==CLOSED="red"]
+        Text item=vilZone1 icon="groundfloor" valuecolor=[vilZone2On==CLOSED="red"] {
+	    Frame label="Zone1" {
+		Text item=vilZone1 label="Current Temperature" icon="temperature" valuecolor=[vilZone1On==CLOSED="red"]
+		Text item=vilEco label="Mode" icon="present" visibility=[vilEco==ON]
+		Text item=vilZone1T2 label="Mode" icon="moon" visibility=[vilEco==OFF]
+		Setpoint item=vilZone1Target label="Target Temperature" minValue=10 maxValue=30 step=1 icon="heating"
+//		Chart item=vilZone1 period=12h refresh=15000
+	    }
+	    Frame label="Heater" {
+		Text item=vilBurner label="Burner" icon="fire" valuecolor=[vilBurnerOn==CLOSED="red"]
+		Text item=vilReturn label="Return" icon="house" valuecolor=[vilBurnerOn==CLOSED="red"]
+		Text item=vilReturnZ2 label="Zone2 Return" icon="firstfloor" valuecolor=[vilZone2On==CLOSED="red"]
+		Text item=vilReturnZ1 label="Zone1 Return" icon="groundfloor" valuecolor=[vilZone1On==CLOSED="red"]
+		Text item=vilFloor label="Floor Return" icon="cellar" valuecolor=[vilFloorOn==CLOSED="red"]
+	    }
+        }
+        Text item=vilZone2 icon="firstfloor" valuecolor=[vilZone2On==CLOSED="red"]{
+	    Text item=vilZone2 icon="temperature" valuecolor=[vilZone2On==CLOSED="red"]
+	    Setpoint item=vilZone2Target minValue=10 maxValue=30 step=1 icon="heating"
+        }
+	Text item=vilUpsInternalTemperature label="UPS Temperature" valuecolor=[>50="orange",40>="green",<=30="blue"] icon="temperature"
+    }
+    Frame label="CCU" {
+	    Switch item=ccuPartition1		label="Security" icon="lock"
+	    Text   item=ccuPartition2		label="Bell" icon="soundvolume"
+	    Switch item=ccuOutput4		label="House Lights" icon="light"
+	    Switch item=ccuOutput3		label="Banya Lights" icon="light"
+	    Switch item=ccuOutput5		label="Outdoor Lights" icon="light"
+	    Text   item=ccuInput14		label="CCU Temperature" icon="temperature"
+	    Text   item=ccuInput14Active	label="Tempearture State" icon="temperature" visibility=[ccuInput14Active==OPEN]
+	    Text   item=ccuInput14Active	label="Tempearture State" icon="error" visibility=[ccuInput14Active==CLOSED]
+	    Text   item=ccuInput1Active		label="Hall movement" icon="motion" valuecolor=[ccuInput1Active==CLOSED="red"]
+	    Text   item=ccuBatteryCharge	label="Battary Charge" icon="battery"
+	    Text   item=ccuBatteryState		label="Battery State" icon="battery" visibility=[ccuBatteryState=="OK"]
+	    Text   item=ccuBatteryState		label="Battery State" icon="error" visibility=[ccuBatteryState!="OK"]
+	    Text   item=ccuPower		label="Input Voltage" icon="energy"
+	}
+    Frame label="Home" {
+    	Text item=upsInternalTemperature label="UPS Temperature" valuecolor=[>25="orange",>15="green",<=15="blue"] icon="temperature"
+	Text item=upsBatteryCapacity label="UPS Battary Capacity" icon="battery"
+	Text item=upsBatteryOutputVoltage icon="battery"
+	Text item=upsBatteryInputVoltage icon="battery"
+	Text item=upsBatteryActualVoltage icon="battery"
+	Text item=upsBatteryAmps icon="battery"
+	Text item=upsRunTimeRemaining icon="battery"
+	Text item=upsModel icon="battery"
+	Text item=upsProbeTemperature
+	Text item=upsOutputStatus
+	Text item=upsBatteryStatus
+	Text item=upsLoadAmps
+	Text item=upsLoad
+	Text item=upsBatteryIndicator
+	Text item=upsTimeOnBattary
+
+        Text item=tvPower label="TV" icon="television" {
+            Switch item=tvPower
+	    Switch item=tvMute icon="soundvolume_mute"
+            Slider item=tvVolume icon="soundvolume"
+        }
+    }
+    Frame label="Switch" {
+
+
+	Switch item=poePort1Enabled label="Port1 Enable POE" visibility=[poePort1Status!="POWER ON"]
+	Frame label="Port1" visibility=[poePort1Status=="POWER ON"] {
+	    Switch item=poePort1Enabled label="Enable POE"
+	    Text item=poePort1Power label="Power" 	icon="energy"
+	    Text item=poePort1Voltage label="Voltage"	icon="energy"
+	    Text item=poePort1Current label="Current"	icon="energy"
+	}
+	Switch item=poePort2Enabled label="Port2 Enable POE" visibility=[poePort2Status!="POWER ON"]
+	Frame label="Port2" visibility=[poePort2Status=="POWER ON"] {
+	    Switch item=poePort2Enabled label="Enable POE"
+	    Text item=poePort2Power label="Power" 	icon="energy"
+	    Text item=poePort2Voltage label="Voltage"	icon="energy"
+	    Text item=poePort2Current label="Current"	icon="energy"
+	}
+	Switch item=poePort3Enabled label="Port3 Enable POE" visibility=[poePort3Status!="POWER ON"]
+	Frame label="Port3" visibility=[poePort3Status=="POWER ON"] {
+	    Switch item=poePort3Enabled label="Enable POE"
+	    Text item=poePort3Power label="Power" 	icon="energy"
+	    Text item=poePort3Voltage label="Voltage"	icon="energy"
+	    Text item=poePort3Current label="Current"	icon="energy"
+	}
+	Switch item=poePort4Enabled label="Port4 Enable POE" visibility=[poePort4Status!="POWER ON"]
+	Frame label="Port4" visibility=[poePort4Status=="POWER ON"] {
+	    Switch item=poePort4Enabled label="Enable POE"
+	    Text item=poePort4Power label="Power" 	icon="energy"
+	    Text item=poePort4Voltage label="Voltage"	icon="energy"
+	    Text item=poePort4Current label="Current"	icon="energy"
+	}
+	Switch item=poePort5Enabled label="Port5 Enable POE" visibility=[poePort5Status!="POWER ON"]
+	Frame label="Port1" visibility=[poePort5Status=="POWER ON"] {
+	    Switch item=poePort5Enabled label="Enable POE"
+	    Text item=poePort5Power label="Power" 	icon="energy"
+	    Text item=poePort5Voltage label="Voltage"	icon="energy"
+	    Text item=poePort5Current label="Current"	icon="energy"
+	}
+	Switch item=poePort6Enabled label="Port6 Enable POE" visibility=[poePort6Status!="POWER ON"]
+	Frame label="Port6" visibility=[poePort6Status=="POWER ON"] {
+	    Switch item=poePort6Enabled label="Enable POE"
+	    Text item=poePort6Power label="Power" 	icon="energy"
+	    Text item=poePort6Voltage label="Voltage"	icon="energy"
+	    Text item=poePort6Current label="Current"	icon="energy"
+	}
+	Switch item=poePort7Enabled label="Port7 Enable POE" visibility=[poePort7Status!="POWER ON"]
+	Frame label="Port7" visibility=[poePort7Status=="POWER ON"] {
+	    Switch item=poePort7Enabled label="Enable POE"
+	    Text item=poePort7Power label="Power" 	icon="energy"
+	    Text item=poePort7Voltage label="Voltage"	icon="energy"
+	    Text item=poePort7Current label="Current"	icon="energy"
+	}
+	Switch item=poePort8Enabled label="Port8 Enable POE" visibility=[poePort8Status!="POWER ON"]
+	Frame label="Port8" visibility=[poePort8Status=="POWER ON"] {
+	    Switch item=poePort8Enabled label="Enable POE"
+	    Text item=poePort8Power label="Power" 	icon="energy"
+	    Text item=poePort8Voltage label="Voltage"	icon="energy"
+	    Text item=poePort8Current label="Current"	icon="energy"
+	}
+
+    }
+}
+

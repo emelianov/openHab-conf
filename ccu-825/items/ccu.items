@@ -1,0 +1,26 @@
+Number ccuInternalTemperature "CCU temperature: [%d°C]" (CCU)
+Number ccuBatteryCharge "CCU battary: [%d%%]" (CCU)
+String ccuBatteryState "CCU battary state: [%s]" (CCU)
+Number ccuPower "CCU power: [%.2f]V" (CCU)
+Contact ccuCase "CCU Case [%s]" (CCU)
+Number ccuBalance "CCU battary: [%.2f]" (CCU)
+
+Switch ccuPartition1 "CCU Partition 1 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetPartitionState%%22,%%22State%%22%%3A%%22Arm%%22%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetPartitionState%%22,%%22State%%22%%3A%%22Disarm%%22%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuPartition2 "CCU Partition 2 [%s]" (CCU)
+Switch ccuPartition3 "CCU Partition 3 [%s]" (CCU)
+Switch ccuPartition4 "CCU Partition 4 [%s]" (CCU)
+
+Switch ccuRelay1 "CCU Relay 1 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A1,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A1,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuRelay2 "CCU Relay 2 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A2,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A2,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuOutput1 "CCU Output 1 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A3,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A3,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuOutput2 "CCU Output 2 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A4,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A4,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuOutput3 "CCU Output 3 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A5,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A5,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuOutput4 "CCU Output 4 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A6,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A6,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+Switch ccuOutput5 "CCU Output 5 [%s]" (CCU) { http=">[ON:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A7,%%22State%%22%%3A1%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}] >[OFF:GET:https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22%%3A%%22SetOutputState%%22,%%22Number%%22%%3A7,%%22State%%22%%3A0%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}]" }
+
+Number ccuInput1 "CCU Input 1 [%d]" (CCU)
+Contact ccuInput1Active "CCU Input 1 [MAP(movement.map):%s]" (CCU)
+Number ccuInput14 "CCU Input 14 [%.2f°C]" (CCU)
+Contact ccuInput14Active "CCU Input 14 [MAP(outof.map):%s]" (CCU)
+
+String ccuCache "CCU cache [%s]" (CCU) { http="<[https://ccu.sh/data.cgx?cmd=%%7B%%22Command%%22:%%22GetStateAndEvents%%22%%7D{Authorization=Basic YWRtaW5AMzU5MjMxMDM0MTQzOTA3OnNFbGU0MTE4}:300000:JS(null.js)]" }
